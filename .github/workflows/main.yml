@@ -10,10 +10,13 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
-    - name: 📂 Sync Files
-      uses: SamKirkland/web-deploy@v1
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
-        target-server: ${{ secrets.TARGET_SERVER }}
-        remote-user: ${{ secrets.REMOTE_USERNAME }}
-        private-ssh-key: ${{ secrets.PRIVATE_SSH_KEY }}
-        destination-path: ${{ secrets.DESTINATION_PATH }}
+        server: ${{ secrets.TARGET_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftp
+        port: 21
+        log-level: verbose
+        server-dir: inetpub/
