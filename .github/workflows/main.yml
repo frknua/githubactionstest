@@ -1,22 +1,19 @@
-on: 
+name: Deployment
+
+on:
   push:
-    branches: [ main ]
-name: 🚀 Deploy website on push
+    branches:
+    - main
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
-        server: ${{ secrets.TARGET_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftp
-        port: 21
-        log-level: verbose
-        server-dir: inetpub/
+        ORIGIN: ${{ secrets.TARGET_SERVER }} # example.com || 8.8.8.8
+        SSHKEY: ${{ secrets.PRIVATE_SSH_KEY }} # ----- BEGIN RSA PRIVATE KEY----- ...
+        NAME: production
+        PORT: 22
+        USER: ${{ secrets.REMOTE_USERNAME }} # admin
+    - run: ssh production ls --help
