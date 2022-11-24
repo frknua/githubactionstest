@@ -17,4 +17,3 @@ jobs:
         protocol: ftp
         port: 21
         log-level: verbose
-        server-dir: inetpub/

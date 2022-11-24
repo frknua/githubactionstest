@@ -7,6 +7,8 @@ namespace GithubActionsTest.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        public string Message { get; private set; } = "PageModel in C#";
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -14,7 +16,7 @@ namespace GithubActionsTest.Pages
 
         public void OnGet()
         {
-
+            Message += $" Server time is {DateTime.Now}";
         }
     }
 }
