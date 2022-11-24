@@ -1,19 +1,16 @@
-name: Deployment
-
-on:
-  push:
-    branches:
-    - main
-
+﻿on: push
+name: 🚀 Deploy website on push
 jobs:
-  deploy:
-    runs-on: windows-latest
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
-        ORIGIN: ${{ secrets.TARGET_SERVER }} # example.com || 8.8.8.8
-        SSHKEY: ${{ secrets.PRIVATE_SSH_KEY }} # ----- BEGIN RSA PRIVATE KEY----- ...
-        NAME: production
-        PORT: 22
-        USER: ${{ secrets.FTP_USER }} # admin
-    - run: ssh production ls --help
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
