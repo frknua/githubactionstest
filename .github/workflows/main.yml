@@ -20,12 +20,12 @@ jobs:
       run: dotnet test GithubActionsTest --no-build --verbosity normal
     - name: Publish
       run: dotnet publish GithubActionsTest -c Release -o website
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: GithubActionsTest
-        path: GithubActionsTest/GithubActionsTest/**
-        if-no-files-found: error
+    #- name: Upload a Build Artifact
+    #  uses: actions/upload-artifact@v3
+    #  with:
+    #    name: GithubActionsTest
+    #    path: GithubActionsTest/GithubActionsTest/**
+    #    if-no-files-found: error
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
