@@ -3,10 +3,21 @@ name: 🚀 Deploy website on push
 jobs:
   web-deploy:
     name: 🎉 Deploy
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
+
+    - name: Set up .Net Core
+      uses: actions/setup-dotnet@v1
+      with: 
+        dotnet-version: '6.0.x'
+
+    - name: Build with .Net
+      run: dotnet build --configuration Release
+
+    - name: .Net Publish
+      run: dotnet publish -c Release test/myapp
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
