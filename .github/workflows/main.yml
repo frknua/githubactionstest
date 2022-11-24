@@ -23,8 +23,8 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: website
-        path: GithubActionsTest/website/**
+        name: GithubActionsTest
+        path: GithubActionsTest/GithubActionsTest/**
         if-no-files-found: error
     
     - name: 📂 Sync files
