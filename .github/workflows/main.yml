@@ -5,19 +5,19 @@ jobs:
     name: 🎉 Deploy
     runs-on: windows-latest
     steps:
-    - name: 🚚 Get latest code
+    - name: 🚚 Get Latest Code
       uses: actions/checkout@v3
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
+    - name: Restore Dependencies
       run: dotnet restore GithubActionsTest
     - name: Build
       run: dotnet build GithubActionsTest --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test GithubActionsTest --no-build --verbosity normal
     - name: Publish
       run: dotnet publish GithubActionsTest/GithubActionsTest.csproj -c Release -o website
     - name: Upload a Build Artifact
