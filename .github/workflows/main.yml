@@ -1,5 +1,5 @@
 ﻿on: push
-name: 🚀 Deploy website on push
+name: 🚀 Deploy Website On Push
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -8,7 +8,7 @@ jobs:
     - name: 🚚 Get Latest Code
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: Setup .Net
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
@@ -19,7 +19,7 @@ jobs:
     - name: Test
       run: dotnet test GithubActionsTest --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish GithubActionsTest/GithubActionsTest.csproj -c Release -o website
+      run: dotnet publish GithubActionsTest.csproj -c Release -o website
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
       with:
